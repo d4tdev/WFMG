@@ -1,0 +1,64 @@
+@import '_settings.scss';
+
+.board-content {
+   height: $board-content-height;
+   overflow-x: auto;
+   overflow-y: hidden;
+   display: flex;
+   &:after {
+      content: '';
+      flex: 0 0 $gap;
+   }
+
+   &::-webkit-scrollbar {
+      --webkit-appearance: none;
+   }
+   &::-webkit-scrollbar:horizontal {
+      height: 11px;
+   }
+   &::-webkit-scrollbar-thumb {
+      background-color: $common-element-bg;
+      border-radius: 8px;
+      // rgb(179, 179, 179)
+   }
+
+   .column-drop-preview {
+      background-color: rgba(150, 150, 200, 0.1);
+      border: 1px dashed #abc;
+      margin: 5px 45px 5px 5px;
+   }
+
+   .add-new-column {
+      background-color: hsla(0, 0%, 100%, 0.24);
+      min-width: 200px;
+      max-width: 200px;
+      line-height: 32px;
+      padding: 4px 0 4px 0px;
+      cursor: pointer;
+      color: white;
+      margin-left: $gap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      border-radius: $column-border-radius;
+
+      &:hover {
+         background-color: hsla(0, 0%, 100%, 0.44);
+      }
+   }
+
+   .enter-new-column {
+      min-width: 250px;
+      max-width: 250px;
+      background-color: $list-bg-color;
+      line-height: 32px;
+      padding: 5px 10px;
+      margin-left: $gap;
+      border-radius: $column-border-radius;
+
+      input.input-enter-new-column {
+         margin: 5px 0;
+      }
+   }
+}

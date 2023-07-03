@@ -1,0 +1,214 @@
+@import '_settings.scss';
+@import '~bootstrap/scss/bootstrap';
+
+.Boards {
+   .crossbar {
+      margin: 25px 0;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid #c3c3c3;
+   }
+   overflow: hidden;
+   // display: grid;
+   // grid-template-rows: 40px 50px 1fr; // grid layout theo rows tren cung la 40px, giua la 50px, duoi la 1fr
+   background-color: #f8fafc;
+   // rgb(245, 222, 190);
+   color: $app-main-text-color;
+   .icon {
+      font-size: 14px;
+      margin: 0 3px;
+   }
+
+   .add-column-container {
+      margin: 0 15px;
+      padding: 0;
+   }
+
+   .btn:focus,
+   .btn:active {
+      outline: none !important;
+      box-shadow: none !important;
+   }
+
+   textarea:focus,
+   textarea.form-control:focus,
+   input.form-control:focus,
+   input[type='text']:focus,
+   input[type='password']:focus,
+   input[type='email']:focus,
+   input[type='number']:focus,
+   [type='text'].form-control:focus,
+   [type='password'].form-control:focus,
+   [type='email'].form-control:focus,
+   [type='tel'].form-control:focus,
+   [contenteditable].form-control:focus {
+      box-shadow: none;
+      border: 1px solid $input-border-color;
+   }
+
+   .trello-content-editable {
+      background-color: inherit;
+      border: none;
+      font-size: inherit;
+      font-weight: inherit;
+      cursor: pointer;
+      &:focus {
+         background-color: #fff;
+      }
+   }
+   .nav-left {
+      background-color: $board-bg-color;
+      min-height: 89vh;
+      margin-right: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+   }
+
+   span.cancel-icon {
+      position: relative;
+      bottom: -4px;
+      margin-left: $gap;
+      cursor: pointer;
+      i {
+         margin-top: 15px;
+         font-size: 22px;
+         color: $alert-danger;
+         &:hover {
+            color: darken($alert-danger, 10);
+         }
+      }
+   }
+
+   .navbar-boards {
+      height: $navbar-board-height + $board-content-height - 2.2vh;
+      padding-left: $gap;
+      display: flex;
+      margin-top: 30px;
+      background-color: #f8fafc;
+      // rgb(245, 222, 190);
+      font-size: 1.1rem;
+
+      // .add-new-column {
+      //    background-color: hsla(0, 0%, 100%, 0.24);
+      //    min-width: 120px;
+      //    max-width: 120px;
+      //    line-height: 32px;
+      //    // padding: 4px 0 4px 15px;
+      //    cursor: pointer;
+      //    color: white;
+      //    margin-left: $gap;
+      //    font-size: 15px;
+      //    border-radius: $column-border-radius;
+
+      //    &:hover {
+      //       background-color: hsla(0, 0%, 100%, 0.44);
+      //    }
+      // }
+      .boards-content {
+         margin-left: 5px;
+         font-weight: 600;
+         font-size: 1.3rem;
+         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+      }
+      .add-new-column {
+         background-color: hsla(0, 0%, 100%, 0.24);
+         min-width: 200px;
+         max-width: 200px;
+         min-height: 120px;
+         line-height: 32px;
+         padding: 4px 0 4px 0px;
+         cursor: pointer;
+         color: white;
+         margin-top: 45px;
+         margin-left: 20px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 15px;
+         border-radius: $column-border-radius;
+
+         &:hover {
+            background-color: hsla(0, 0%, 100%, 0.44);
+         }
+      }
+      .board-title {
+         border-radius: 5px;
+         height: 120px;
+         width: 200px !important;
+         width: 100%;
+         color: white;
+         text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+         font-weight: bold;
+         margin-top: 15px;
+         margin-right: 10px;
+         font-size: 1.2rem;
+         background-image: url('https://picsum.photos/200/120');
+         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+      }
+      a {
+         max-width: 200px;
+         text-decoration: none;
+         margin-right: 10px;
+      }
+      // .enter-new-column {
+      //    min-width: 220px;
+      //    max-width: 220px;
+      //    // background-color: $list-bg-color;
+      //    line-height: 32px;
+      //    // padding: 5px 10px;
+      //    margin-left: $gap;
+      //    border-radius: $column-border-radius;
+
+      //    input.input-enter-new-column {
+      //       margin-left: 5px;
+      //    }
+      // }
+      .enter-new-column {
+         min-width: 250px;
+         max-width: 250px;
+         min-height: 120px;
+         background-color: $list-bg-color;
+         line-height: 32px;
+         padding: 5px 10px;
+         margin-top: 45px;
+         margin-left: $gap;
+         border-radius: $column-border-radius;
+
+         input.input-enter-new-column {
+            margin: 15px 0 0 0;
+         }
+      }
+   }
+
+   .list-group {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: transparent;
+      .boards-choice {
+         width: 80%;
+         font-size: 1.2rem;
+         margin: 0 0 2px 0;
+         padding: 8px 4px;
+         border: none;
+         border-radius: 5px;
+         background-color: transparent;
+         &:hover {
+            background-color: $common-element-bg;
+            cursor: pointer;
+            border-radius: 5px;
+         }
+      }
+      .active {
+         background-color: rgb(245, 222, 190);
+         border-radius: 5px;
+         border: none;
+         color: #000;
+         &:hover {
+            background-color: rgb(245, 222, 190);
+         }
+      }
+   }
+}

@@ -16,7 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"corsOptions\": () => (/* binding */ corsOptions)\n/* harmony export */ });\nvar WHITELIST_DOMAINS = ['http://localhost:3000', 'https://wfmg.vercel.app'];\nvar corsOptions = {\n  origin: WHITELIST_DOMAINS\n};\n\n//# sourceURL=webpack://trello-mern-api/./src/config/cors.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"corsOptions\": () => (/* binding */ corsOptions)\n/* harmony export */ });\nvar WHITELIST_DOMAINS = ['http://localhost:3000', 'https://wfmg.vercel.app'];\nvar corsOptions = {\n  origin: WHITELIST_DOMAINS,\n  credentials: true\n};\n\n//# sourceURL=webpack://trello-mern-api/./src/config/cors.js?");
 
 /***/ }),
 

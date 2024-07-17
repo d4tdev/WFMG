@@ -43,4 +43,6 @@ const updateOne = async (id, data) => {
    }
 }
 
-module.exports = ColumnService = { createNew, updateOne }
+const ColumnService = { createNew, updateOne }
+
+module.exports = ColumnService

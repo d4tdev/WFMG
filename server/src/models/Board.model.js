@@ -143,8 +143,7 @@ const getDeletedBoards = async (userId) => {
       throw new Error(err)
    }
 }
-
-module.exports = BoardModel = {
+const BoardModel = {
    createNew,
    getABoard,
    pushColumnOrder,
@@ -152,3 +151,5 @@ module.exports = BoardModel = {
    getAllBoards,
    getDeletedBoards,
 }
+
+module.exports = BoardModel

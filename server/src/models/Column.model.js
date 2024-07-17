@@ -103,9 +103,11 @@ const updateMany = async (ids, data) => {
    }
 }
 
-module.exports = ColumnModel = {
+const ColumnModel = {
    createNew,
    updateOne,
    pushCardOrder,
    updateMany,
 }
+
+module.exports = ColumnModel

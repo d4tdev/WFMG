@@ -16,5 +16,5 @@ const createNew = async (req, res, next) => {
       })
    }
 }
-
-module.exports = UserValidation = { createNew }
+const UserValidation = { createNew }
+module.exports = UserValidation

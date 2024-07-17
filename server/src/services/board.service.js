@@ -89,10 +89,12 @@ const getDeletedBoards = async (userId) => {
    }
 }
 
-module.exports = BoardService = {
+const BoardService = {
    createNew,
    getABoard,
    updateOne,
    getAllBoards,
    getDeletedBoards,
 }
+
+module.exports = BoardService

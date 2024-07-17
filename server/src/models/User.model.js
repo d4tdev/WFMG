@@ -71,9 +71,11 @@ const pushBoardOrder = async (userId, boardId) => {
    }
 }
 
-module.exports = UserModel = {
+const UserModel = {
    createNew,
    findByUsername,
    pushBoardOrder,
    findById,
 }
+
+module.exports = UserModel

@@ -37,5 +37,5 @@ const updateOne = async (req, res, next) => {
       })
    }
 }
-
-module.exports = CardValidation = { createNew, updateOne }
+const CardValidation = { createNew, updateOne }
+module.exports = CardValidation

@@ -30,4 +30,6 @@ const updateOne = async (id, data) => {
    }
 }
 
-module.exports = CardService = { createNew, updateOne }
+const CardService = { createNew, updateOne }
+
+module.exports = CardService 

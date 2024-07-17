@@ -65,4 +65,6 @@ const getUserInfo = async (userId) => {
    }
 }
 
-module.exports = AuthService = { login, register, getUserInfo }
+const AuthService = { login, register, getUserInfo }
+
+module.exports = AuthService

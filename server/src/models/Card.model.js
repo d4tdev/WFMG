@@ -81,4 +81,6 @@ const updateOne = async (id, data) => {
    }
 }
 
-module.exports = CardModel = { createNew, updateMany, updateOne }
+const CardModel = { createNew, updateMany, updateOne }
+
+module.exports = CardModel

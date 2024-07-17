@@ -34,4 +34,5 @@ const register = async (req, res, next) => {
    }
 }
 
-module.exports = AuthValidation = { login, register }
+const AuthValidation = { login, register }
+module.exports = AuthValidation

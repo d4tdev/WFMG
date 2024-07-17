@@ -35,5 +35,5 @@ const updateOne = async (req, res, next) => {
       })
    }
 }
-
-module.exports = BoardValidation = { createNew, updateOne }
+const BoardValidation = { createNew, updateOne }
+module.exports = BoardValidation

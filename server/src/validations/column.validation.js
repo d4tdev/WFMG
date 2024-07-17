@@ -34,5 +34,5 @@ const updateOne = async (req, res, next) => {
       })
    }
 }
-
-module.exports = ColumnValidation = { createNew, updateOne }
+const ColumnValidation = { createNew, updateOne }
+module.exports = ColumnValidation

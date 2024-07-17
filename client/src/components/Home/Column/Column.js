@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useRef } from 'react';
-const { Container, Draggable } = require('react-smooth-dnd');
-import { Dropdown, Form, Button } from 'react-bootstrap';
-import { cloneDeep } from 'lodash';
+import React, { useState, useEffect, useRef } from 'react'
+const { Container, Draggable } = require('react-smooth-dnd')
+import { Dropdown, Form, Button } from 'react-bootstrap'
+const { cloneDeep } = require('lodash')
 
-import './Column.scss';
-import Card from 'components/Home/Card/Card';
-import ConfirmModal from 'components/Common/ConfirmModal';
-import { mapOrder } from 'utilities/sorts';
-import { MODAL_ACTION_CONFIRM } from 'utilities/constants';
+import './Column.scss'
+import Card from 'components/Home/Card/Card'
+import ConfirmModal from 'components/Common/ConfirmModal'
+import { mapOrder } from 'utilities/sorts'
+import { MODAL_ACTION_CONFIRM } from 'utilities/constants'
 import {
    saveContentAfterPressEnter,
    selectAllInLineText,
-} from 'utilities/contentEditable';
-import { createNewCard, updateColumn } from 'actions/ApiCall';
+} from 'utilities/contentEditable'
+import { createNewCard, updateColumn } from 'actions/ApiCall'
 
 function Column(props) {
-   const { column, onCardDrop, onUpdateColumnState } = props;
-   const cards = mapOrder(column.cards, column.cardOrder, '_id');
+   const { column, onCardDrop, onUpdateColumnState } = props
+   const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
-   const [showConfirmModal, setShowConfirmModal] = useState(false);
-   const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal);
+   const [showConfirmModal, setShowConfirmModal] = useState(false)
+   const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal)
 
-   const [columnTitle, setNewColumnTitle] = useState('');
+   const [columnTitle, setNewColumnTitle] = useState('')
 
-   const [openNewCardForm, setOpenNewCardForm] = useState(false);
-   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm);
+   const [openNewCardForm, setOpenNewCardForm] = useState(false)
+   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
 
-   const [newCardTitle, setNewCardTitle] = useState('');
+   const [newCardTitle, setNewCardTitle] = useState('')
 
    useEffect(() => {
-      setNewColumnTitle(column.title);
-   }, [column.title]);
+      setNewColumnTitle(column.title)
+   }, [column.title])
 
-   const newCardTextareaRef = useRef(null);
+   const newCardTextareaRef = useRef(null)
    // focus and select the new card text area when the new card is selected
    useEffect(() => {
       if (newCardTextareaRef && newCardTextareaRef.current) {
-         newCardTextareaRef.current.focus();
-         newCardTextareaRef.current.select();
+         newCardTextareaRef.current.focus()
+         newCardTextareaRef.current.select()
       }
-   }, [openNewCardForm]);
+   }, [openNewCardForm])
 
    // Remove column
    const onConfirmModalAction = (type) => {
@@ -48,15 +48,15 @@ function Column(props) {
          const newColumn = {
             ...column,
             _destroy: true,
-         };
+         }
 
          // Call api
          updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
-            onUpdateColumnState(updatedColumn.data);
-         });
+            onUpdateColumnState(updatedColumn.data)
+         })
       }
-      toggleShowConfirmModal();
-   };
+      toggleShowConfirmModal()
+   }
 
    // Update column title
    const handleColumnTitleBlur = () => {
@@ -64,38 +64,38 @@ function Column(props) {
          const newColumn = {
             ...column,
             title: columnTitle,
-         };
+         }
 
          // Call api
          updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
-            updatedColumn.data.cards = newColumn.cards;
-            onUpdateColumnState(updatedColumn.data);
-         });
+            updatedColumn.data.cards = newColumn.cards
+            onUpdateColumnState(updatedColumn.data)
+         })
       }
-   };
+   }
 
    const addNewCard = () => {
       if (!newCardTitle) {
-         newCardTextareaRef.current.focus();
-         return;
+         newCardTextareaRef.current.focus()
+         return
       }
 
       const newCardToAdd = {
          title: newCardTitle.trim(),
          columnId: column._id,
          boardId: column.boardId,
-      };
+      }
       // Call API
       createNewCard(newCardToAdd).then((card) => {
-         let newColumn = cloneDeep(column);
-         newColumn.cards.push(card);
-         newColumn.cardOrder.push(card._id);
+         let newColumn = cloneDeep(column)
+         newColumn.cards.push(card)
+         newColumn.cardOrder.push(card._id)
 
-         onUpdateColumnState(newColumn);
-         setNewCardTitle('');
-         toggleOpenNewCardForm();
-      });
-   };
+         onUpdateColumnState(newColumn)
+         setNewCardTitle('')
+         toggleOpenNewCardForm()
+      })
+   }
 
    return (
       <div className='column'>
@@ -130,12 +130,10 @@ function Column(props) {
                         Xóa cột
                      </Dropdown.Item>
                      <Dropdown.Item>
-                        Di chuyển tất cả các thẻ trong cột này (Đang phát
-                        triển)
+                        Di chuyển tất cả các thẻ trong cột này (Đang phát triển)
                      </Dropdown.Item>
                      <Dropdown.Item>
-                        Lưu trữ tất cả các thẻ trong cột này (Đang phát
-                        triển)
+                        Lưu trữ tất cả các thẻ trong cột này (Đang phát triển)
                      </Dropdown.Item>
                   </Dropdown.Menu>
                </Dropdown>
@@ -210,7 +208,7 @@ function Column(props) {
             content={`Bạn có chắc chắn muốn xóa cột <strong>${column.title}</strong>! <br/>Tất cả các thẻ liên quan cũng sẽ bị xóa!`}
          />
       </div>
-   );
+   )
 }
 
-export default Column;
+export default Column

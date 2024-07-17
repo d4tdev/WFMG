@@ -1,9 +1,9 @@
-import Joi from 'joi';
-import { ObjectId } from 'mongodb';
-import { getDB } from '../config/mongodb';
+const Joi = require('joi')
+const { ObjectId } = require('mongodb')
+const { getDB } = require('../config/mongodb')
 
 // Define Board collection schema
-const boardCollectionName = 'Boards';
+const boardCollectionName = 'Boards'
 const BoardSchema = Joi.object({
    userId: Joi.string().required().trim(),
    title: Joi.string().required().min(3).max(20).trim(),
@@ -11,32 +11,32 @@ const BoardSchema = Joi.object({
    createdAt: Joi.date().timestamp().default(Date.now()),
    updatedAt: Joi.date().timestamp().default(null),
    _destroy: Joi.boolean().default(false),
-});
+})
 
 const validateSchema = async (data) => {
-   return await BoardSchema.validateAsync(data, { abortEarly: false }); // abortEarly: false to return all errors
-};
+   return await BoardSchema.validateAsync(data, { abortEarly: false }) // abortEarly: false to return all errors
+}
 
 const createNew = async (data) => {
    try {
-      const value = await validateSchema(data);
+      const value = await validateSchema(data)
       const newValue = {
          ...value,
-      };
-      if (value.userId) newValue.userId = new ObjectId(value.userId);
+      }
+      if (value.userId) newValue.userId = new ObjectId(value.userId)
 
       const result = await getDB()
          .collection(boardCollectionName)
-         .insertOne(newValue);
+         .insertOne(newValue)
       if (result.acknowledged) {
          return await getDB()
             .collection(boardCollectionName)
-            .findOne({ _id: result.insertedId });
+            .findOne({ _id: result.insertedId })
       }
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
 /**
  * It takes a boardId and a columnId, and pushes the columnId into the columnOrder array of the board
@@ -57,12 +57,12 @@ const pushColumnOrder = async (boardId, columnId) => {
                },
             },
             { returnDocument: 'after' } // trả về document sau khi update
-         );
-      return result.value;
+         )
+      return result.value
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
 const getABoard = async (boardId) => {
    try {
@@ -94,18 +94,18 @@ const getABoard = async (boardId) => {
                },
             },
          ])
-         .toArray(); // Trả về mảng
+         .toArray() // Trả về mảng
 
-      return result[0] || {};
+      return result[0] || {}
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
 const updateOne = async (id, data) => {
    try {
-      const newData = { ...data };
-      if (data.userId) newData.userId = new ObjectId(data.userId);
+      const newData = { ...data }
+      if (data.userId) newData.userId = new ObjectId(data.userId)
 
       const result = await getDB()
          .collection(boardCollectionName)
@@ -113,42 +113,42 @@ const updateOne = async (id, data) => {
             { _id: new ObjectId(id) },
             { $set: newData },
             { returnDocument: 'after' } // trả về document sau khi update
-         );
-      return { status: 'Update success', data: result.value };
+         )
+      return { status: 'Update success', data: result.value }
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
 const getAllBoards = async (userId) => {
    try {
       const result = await getDB()
          .collection(boardCollectionName)
          .find({ userId: new ObjectId(userId), _destroy: false })
-         .toArray();
-      return result || [];
+         .toArray()
+      return result || []
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
 const getDeletedBoards = async (userId) => {
    try {
       const result = await getDB()
          .collection(boardCollectionName)
          .find({ userId: new ObjectId(userId), _destroy: true })
-         .toArray();
-      return result || [];
+         .toArray()
+      return result || []
    } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
    }
-};
+}
 
-export const BoardModel = {
+module.exports = BoardModel = {
    createNew,
    getABoard,
    pushColumnOrder,
    updateOne,
    getAllBoards,
    getDeletedBoards,
-};
+}

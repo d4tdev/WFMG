@@ -1,7 +1,7 @@
-import { BoardModel } from '../models/board.model'
-import { UserModel } from '../models/user.model'
-import { cloneDeep } from 'lodash'
-import { ColumnService } from './column.service'
+const BoardModel = require('../models/board.model')
+const UserModel = require('../models/user.model')
+const { cloneDeep } = require('lodash')
+const ColumnService = require('./column.service')
 
 const createNew = async (data) => {
    try {
@@ -89,7 +89,7 @@ const getDeletedBoards = async (userId) => {
    }
 }
 
-export const BoardService = {
+module.exports = BoardService = {
    createNew,
    getABoard,
    updateOne,

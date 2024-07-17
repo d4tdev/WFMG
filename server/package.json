@@ -9,10 +9,11 @@
       "create-build": "mkdir build",
       "clean": "npm run remove-build && npm run create-build",
       "build-babel": "babel ./src -d ./build/src",
-      "production": "npm run build && node ./build/src/server.js",
+      "production": "npm run build && node ./build/src/index.js",
       "webpack": "webpack --mode development --config webpack.config.cjs",
-      "start": "npm run webpack & node dist/main",
-      "dev": "nodemon --exec babel-node src/server.js"
+      "start1": "npm run webpack & node dist/main",
+      "start": "node src/index.js",
+      "dev": "nodemon --exec babel-node src/index.js"
    },
    "keywords": [],
    "author": "",

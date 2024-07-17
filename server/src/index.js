@@ -1,12 +1,11 @@
-import express from 'express'
-import { connectDB } from './config/mongodb'
-import { env } from '*/config/environment'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
+const express = require('express')
+const { connectDB } = require('./config/mongodb')
+const { env } = require('./config/environment')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
-import { corsOptions } from './config/cors'
-import { routes } from './routes'
-
+const { corsOptions } = require('./config/cors')
+const  routes  = require('./routes')
 // const hostname = env.HOSTNAME;
 const port = env.PORT
 

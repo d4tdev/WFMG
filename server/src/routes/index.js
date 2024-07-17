@@ -1,5 +1,6 @@
-import { apiV1 } from './v1';
+const { apiV1 } = require('./v1')
 
-export const routes = app => {
-   app.use('/v1', apiV1);
-};
+module.exports = routes = (app) => {
+   app.use('/', (req, res) => res.json({ message: 'Welcome to the API' }))
+   app.use('/v1', apiV1)
+}
